@@ -8,7 +8,7 @@ import org.springframework.data.redis.support.collections.DefaultRedisList;
 import org.springframework.stereotype.Component;
 import ua.ardas.esputnik.ms3.cassandra.domain.Interaction;
 import ua.ardas.esputnik.redis.RedisNames;
-import ua.ardas.esputnik.redis.dto.UnsubscriptionResult;
+import ua.ardas.esputnik.redis.dto.ComplaintInfo;
 
 import javax.annotation.PostConstruct;
 import java.util.Date;
@@ -19,17 +19,30 @@ public class RazgrebatorClient {
 
     @Autowired
     @Qualifier("redisTemplatePrototype")
-    private RedisTemplate<String, UnsubscriptionResult> redisTemplate;
-    private BlockingQueue<UnsubscriptionResult> resultsQueue;
+    private RedisTemplate<String, ComplaintInfo> redisTemplate;
+    private BlockingQueue<ComplaintInfo> resultsQueue;
 
     @PostConstruct
     private void init() {
-        redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer<UnsubscriptionResult>(UnsubscriptionResult.class));
-        resultsQueue = new DefaultRedisList<UnsubscriptionResult>(RedisNames.RESULTS_UNSUBSCRIBED, redisTemplate);
+        redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer<>(ComplaintInfo.class));
+        resultsQueue = new DefaultRedisList<>(RedisNames.RESULTS_UNSUBSCRIBED, redisTemplate);
+    }
+
+    public void processSpam(int orgId, int contactId, Integer messageInstanceId, Integer imId, String feedback) throws InterruptedException {
+        ComplaintInfo ir = new ComplaintInfo();
+        ir.setMessageInstanceId(messageInstanceId);
+        ir.setSpam(true);
+        ir.setContactId(contactId);
+        ir.setReason(feedback);
+        ir.setOrgId(orgId);
+        ir.setImId(imId);
+        ir.setTimeStamp(new Date());
+
+        resultsQueue.put(ir);
     }
 
     public void processUnsubscribed(Interaction interaction, String feedback) throws InterruptedException {
-        UnsubscriptionResult ir = new UnsubscriptionResult(interaction.getInteractionId());
+        ComplaintInfo ir = new ComplaintInfo(interaction.getInteractionId());
         ir.setOrgId(interaction.getOrganisationId());
         ir.setReason(feedback);
         ir.setTimeStamp(new Date());
@@ -38,7 +51,7 @@ public class RazgrebatorClient {
     }
 
     public void processUnsubscribed(String iid, String feedback) throws InterruptedException {
-        UnsubscriptionResult ir = new UnsubscriptionResult(iid);
+        ComplaintInfo ir = new ComplaintInfo(iid);
         ir.setTimeStamp(new Date());
         ir.setReason(feedback);
 
@@ -50,7 +63,7 @@ public class RazgrebatorClient {
     }
 
     public void processUnsubscribed(int orgId, int contactId, Integer messageInstanceId, Integer imId, String feedback) throws InterruptedException {
-        UnsubscriptionResult ir = new UnsubscriptionResult();
+        ComplaintInfo ir = new ComplaintInfo();
         ir.setMessageInstanceId(messageInstanceId);
         ir.setContactId(contactId);
         ir.setReason(feedback);
@@ -60,5 +73,4 @@ public class RazgrebatorClient {
 
         resultsQueue.put(ir);
     }
-
 }
