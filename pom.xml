@@ -24,7 +24,7 @@
         <dependency>
             <groupId>ua.ardas.esputnik</groupId>
             <artifactId>message-service-commons</artifactId>
-            <version>1.0-r20151103-SNAPSHOT</version>
+            <version>1.0</version>
         </dependency>
         <dependency>
             <groupId>ua.ardas.esputnik</groupId>
