@@ -51,6 +51,33 @@
     <dependencies>
         <dependency>
             <groupId>ua.ardas.esputnik</groupId>
+            <artifactId>message-service-api</artifactId>
+            <version>1.1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.commons</groupId>
+                    <artifactId>commons-email</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>ua.ardas.sendmessage.sms</groupId>
+                    <artifactId>smpp</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>ua.ardas.sendmessage.email</groupId>
+                    <artifactId>email-base</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.unitils</groupId>
+                    <artifactId>unitils-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.unitils</groupId>
+                    <artifactId>unitils-mock</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>ua.ardas.esputnik</groupId>
             <artifactId>message-service-commons</artifactId>
             <version>1.1</version>
             <exclusions>
@@ -71,8 +98,24 @@
                     <artifactId>cassandra-commons</artifactId>
                 </exclusion>
                 <exclusion>
+                    <groupId>ua.ardas.esputnik</groupId>
+                    <artifactId>es-stat</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>ua.ardas.esputnik</groupId>
+                    <artifactId>message-service-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>ua.ardas.sendmessage.api</groupId>
+                    <artifactId>api</artifactId>
+                </exclusion>
+                <exclusion>
                     <groupId>org.unitils</groupId>
                     <artifactId>unitils-mock</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId> org.springframework</groupId>
+                    <artifactId>spring-jdbc</artifactId>
                 </exclusion>
             </exclusions>
         </dependency>
