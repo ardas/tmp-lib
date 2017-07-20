@@ -53,6 +53,28 @@
             <groupId>ua.ardas.esputnik</groupId>
             <artifactId>message-service-commons</artifactId>
             <version>1.1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>ua.ardas.sendmessage.email</groupId>
+                    <artifactId>email-base</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>ua.ardas.esputnik</groupId>
+                    <artifactId>es-dao</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>ua.ardas.esputnik</groupId>
+                    <artifactId>content</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>ua.ardas.esputnik</groupId>
+                    <artifactId>cassandra-commons</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.unitils</groupId>
+                    <artifactId>unitils-mock</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>ua.ardas.esputnik</groupId>
