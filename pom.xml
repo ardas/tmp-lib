@@ -52,7 +52,7 @@
         <dependency>
             <groupId>ua.ardas.esputnik</groupId>
             <artifactId>message-service-api</artifactId>
-            <version>1.8</version>
+            <version>1.10</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.apache.commons</groupId>
