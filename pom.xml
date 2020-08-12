@@ -79,7 +79,7 @@
         <dependency>
             <groupId>ua.ardas.esputnik</groupId>
             <artifactId>message-service-commons</artifactId>
-            <version>1.7</version>
+            <version>1.9.13</version>
             <exclusions>
                 <exclusion>
                     <groupId>ua.ardas.sendmessage.email</groupId>
@@ -127,7 +127,7 @@
         <dependency>
             <groupId>ua.ardas.esputnik</groupId>
             <artifactId>cassandra-commons</artifactId>
-            <version>1.14</version>
+            <version>1.113</version>
         </dependency>
     </dependencies>
 
