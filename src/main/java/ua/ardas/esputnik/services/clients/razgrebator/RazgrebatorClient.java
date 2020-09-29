@@ -28,7 +28,7 @@ public class RazgrebatorClient {
         resultsQueue = new DefaultRedisList<>(RedisNames.RESULTS_UNSUBSCRIBED, redisTemplate);
     }
 
-    public void processSpam(int orgId, int contactId, Integer messageInstanceId, Long imId, String feedback, Integer contentPartId) throws InterruptedException {
+    public void processSpam(int orgId, int contactId, Integer messageInstanceId, Long imId, String feedback) throws InterruptedException {
         ComplaintInfo ir = new ComplaintInfo();
         ir.setMessageInstanceId(messageInstanceId);
         ir.setSpam(true);
@@ -37,7 +37,6 @@ public class RazgrebatorClient {
         ir.setOrgId(orgId);
         ir.setImId(imId);
         ir.setTimeStamp(new Date());
-        ir.setContentPartId(contentPartId);
 
         resultsQueue.put(ir);
     }
@@ -63,7 +62,7 @@ public class RazgrebatorClient {
         processUnsubscribed(iid, null);
     }
 
-    public void processUnsubscribed(int orgId, int contactId, Integer messageInstanceId, Long imId, String feedback) throws InterruptedException {
+    public void processUnsubscribed(int orgId, int contactId, Integer messageInstanceId, Long imId, String feedback, Integer contentPartId) throws InterruptedException {
         ComplaintInfo ir = new ComplaintInfo();
         ir.setMessageInstanceId(messageInstanceId);
         ir.setContactId(contactId);
@@ -71,6 +70,7 @@ public class RazgrebatorClient {
         ir.setOrgId(orgId);
         ir.setImId(imId);
         ir.setTimeStamp(new Date());
+        ir.setContentPartId(contentPartId);
 
         resultsQueue.put(ir);
     }
