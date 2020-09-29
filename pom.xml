@@ -2,14 +2,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <scm>
-        <developerConnection>scm:svn:https://www.ardas.dp.ua/repos/esputnik/trunk/es-services/service-clients/razgrebator-client</developerConnection>
-        <connection>scm:svn:https://www.ardas.dp.ua/repos/esputnik/trunk/es-services/service-clients/razgrebator-client</connection>
+        <developerConnection>scm:svn:https://www.ardas.dp.ua/repos/esputnik/tags/razgrebator-client-1.13</developerConnection>
+        <connection>scm:svn:https://www.ardas.dp.ua/repos/esputnik/tags/razgrebator-client-1.13</connection>
     </scm>
 
 
     <groupId>ua.ardas.esputnik</groupId>
     <artifactId>razgrebator-client</artifactId>
-    <version>1.13-SNAPSHOT</version>
+    <version>1.13</version>
     <packaging>jar</packaging>
 
     <properties>
